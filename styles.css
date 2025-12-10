@@ -1,31 +1,33 @@
 /* 
-  Theme: Midnight Prose
-  Aesthetic: Premium, Minimal, Writer-Focused
-  Colors: Deep Charcoal, Soft Gold, Muted White
+  Theme: Winter Canvas
+  Aesthetic: Cold, Minimalist, Ethereal, Cosmic
+  Colors: Ice Blue, Deep Midnight, Starlight White
 */
 
 :root {
-  /* Color Palette */
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #141414;
-  --bg-card: #1c1c1c;
-  
-  --text-primary: #f0f0f0;
-  --text-secondary: #a0a0a0;
-  --text-accent: #d4af37; /* Metallic Gold */
-  
-  --border-subtle: #333333;
-  --overlay: rgba(0, 0, 0, 0.7);
+  /* Color Palette - Refined for readability */
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #eef2f7;
+
+  --text-primary: #0f1115;
+  /* Almost black for high contrast */
+  --text-secondary: #353b48;
+  /* Dark charcoal/slate, readable */
+  --text-accent: #2980b9;
+
+  --border-subtle: #dcdde1;
 
   /* Typography */
-  --font-serif: 'Playfair Display', serif;
+  --font-serif: 'Cormorant Garamond', serif;
   --font-sans: 'Inter', sans-serif;
-  
+
   /* Spacing */
-  --container-width: 800px;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 4rem;
+  --container-width: 720px;
+  /* Slightly tighter for better reading focus */
+  --spacing-sm: 2rem;
+  --spacing-md: 4rem;
+  --spacing-lg: 8rem;
+  /* Significant breathing room */
 }
 
 * {
@@ -37,15 +39,26 @@
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-sans);
-  line-height: 1.6;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  /* Slightly larger base size */
+  line-height: 1.9;
+  /* Luftier line height */
   -webkit-font-smoothing: antialiased;
+  opacity: 0;
+  animation: fadeInPage 1s ease-out forwards;
+}
+
+@keyframes fadeInPage {
+  to {
+    opacity: 1;
+  }
 }
 
 a {
   text-decoration: none;
   color: inherit;
-  transition: color 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 a:hover {
@@ -53,134 +66,235 @@ a:hover {
 }
 
 /* Typography Utilities */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3 {
   font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
 }
 
 h1 {
-  font-size: 3.5rem;
-  line-height: 1.2;
+  font-size: 4rem;
+  font-style: italic;
   margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.02em;
+  font-weight: 500;
 }
 
 h2 {
-  font-size: 2rem;
-  color: var(--text-accent);
-  margin-bottom: var(--spacing-md);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+  font-weight: 600;
+  /* Bumping weight for headers */
 }
 
 p {
   color: var(--text-secondary);
-  font-size: 1.1rem;
+  font-size: 1.3rem;
+  /* Slight bump */
+  margin-bottom: 2rem;
+  font-weight: 500;
+  /* Medium weight for Cormorant is much better for reading */
+}
+
+/* Prose specific */
+.prose-body p {
+  text-indent: 3rem;
+  text-align: justify;
+  line-height: 2.0;
+  margin-bottom: 0;
+  color: var(--text-primary);
+  /* Use primary color for main reading content */
+}
+
+/* Add slight separation between paragraphs without margin */
+.prose-body p+p {
+  margin-top: 1.5rem;
+}
+
+.poem-body p {
+  white-space: pre-line;
+  text-align: left;
+  margin-bottom: 4rem;
+  font-style: normal;
+  line-height: 2;
+  color: var(--text-primary);
 }
 
 /* Layout */
-.container {
+body>header,
+main,
+footer {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding: 0 var(--spacing-sm);
 }
 
 /* Header */
 header {
-  padding: var(--spacing-md) 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border-subtle);
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+  text-align: center;
 }
 
 .logo {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+}
+
+.logo:hover {
+  border-bottom-color: var(--text-accent);
+  letter-spacing: 0.15em;
+  /* Subtle expansion */
 }
 
 nav ul {
   display: flex;
-  gap: var(--spacing-md);
+  justify-content: center;
+  gap: 3rem;
   list-style: none;
+  padding: 0;
 }
 
 nav a {
-  font-size: 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
   color: var(--text-secondary);
+  opacity: 0.6;
+  position: relative;
 }
 
-nav a:hover, nav a.active {
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -5px;
+  left: 50%;
+  background-color: var(--text-accent);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+nav a:hover,
+nav a.active {
   color: var(--text-primary);
+  opacity: 1;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
 }
 
 /* Hero Section */
-.hero {
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  animation: fadeIn 1.5s ease-out;
+.hero-small {
+  padding: var(--spacing-lg) 0 var(--spacing-md) 0;
+  text-align: center;
 }
 
-.hero p {
-  max-width: 500px;
-  margin-top: var(--spacing-sm);
-  margin-bottom: var(--spacing-md);
+.subtitle {
+  font-style: italic;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  opacity: 0.8;
+  margin-top: -1rem;
 }
 
-.btn {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: var(--text-accent);
-  color: var(--bg-primary);
-  font-weight: 600;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-.btn:hover {
-  background-color: #f0f0f0;
-  transform: translateY(-2px);
-}
-
-/* Featured Section */
-.featured {
-  padding: var(--spacing-lg) 0;
+/* Content List */
+.content-list {
+  padding-bottom: var(--spacing-lg);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-md);
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
 }
 
-.card {
-  background: var(--bg-card);
-  padding: var(--spacing-md);
-  border: 1px solid var(--border-subtle);
-  transition: transform 0.3s ease, border-color 0.3s ease;
-  cursor: pointer;
+.content-item {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-subtle);
+  animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 0;
+  animation-fill-mode: forwards;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  border-color: var(--text-accent);
+.content-item:nth-child(1) {
+  animation-delay: 0.1s;
 }
 
-.card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+.content-item:nth-child(2) {
+  animation-delay: 0.2s;
 }
 
+.content-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.content-item:last-child {
+  border-bottom: none;
+}
+
+.content-item h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  text-align: center;
+  /* Center headers */
+}
+
+/* Cards */
 .card-meta {
-  font-size: 0.8rem;
-  color: var(--text-accent);
-  text-transform: uppercase;
-  margin-bottom: 1rem;
   display: block;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-accent);
+  margin-bottom: 1rem;
+}
+
+.content-item a {
+  display: table;
+  margin: 0 auto;
+  /* Center button */
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.content-item a:hover {
+  border-bottom-color: var(--text-accent);
+}
+
+/* Animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Footer */
@@ -188,20 +302,29 @@ footer {
   text-align: center;
   padding: var(--spacing-lg) 0;
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  border-top: 1px solid var(--border-subtle);
-  margin-top: var(--spacing-lg);
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  opacity: 0.5;
+  letter-spacing: 0.05em;
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  h1 { font-size: 2.5rem; }
-  .hero { height: auto; padding: var(--spacing-lg) 0; }
-  nav ul { gap: var(--spacing-sm); }
+  :root {
+    --spacing-lg: 5rem;
+    --spacing-md: 3rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .prose-body p {
+    text-indent: 0;
+    text-align: left;
+  }
 }
